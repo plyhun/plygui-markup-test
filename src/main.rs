@@ -23,15 +23,15 @@ const TEST: &str = r#"
 	}"#;
 
 fn main() {
-	let res = parse_markup(TEST, |control_type, content| {
-		match control_type {
+	let res = parse_markup(TEST, |content| {
+		match content.member_type.as_str() {
 			"LinearLayout" => {
 				plygui::LinearLayout::new(plygui::layout::Orientation::Vertical)
 			},
 			"Button" => {
 				plygui::Button::new("uu")
 			},
-			_ => panic!("{} type is unsupported", control_type),
+			_ => panic!("{} type is unsupported", content.member_type),
 		}
 	});
 }
