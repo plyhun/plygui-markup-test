@@ -9,4 +9,4 @@ path = "src/main.rs"
 
 [dependencies]
 plygui-markup = {version = "0.0.1", path = "../plygui-markup"}
-plygui = {version = "0.0.1", path = "../plygui"}
+plygui = {version = "0.0.1", path = "../plygui", features = ["markup"]}

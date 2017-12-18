@@ -9,29 +9,29 @@ const TEST: &str = r#"
 		"type": "LinearLayout",
 		"width": "MatchParent",
 		"height": "WrapContent",
+		"orientation": "Vertical",
 		"children": [{
 				"id": "btn_click_it",
 				"type": "Button",
-				"name": "Click It"
+				"label": "Click It"
 			},
 			{
 				"id": "btn_dont_click_it",
 				"type": "Button",
-				"name": "Don't Click It"
+				"label": "Don't Click It"
 			}
 		]
 	}"#;
 
 fn main() {
-	let res = parse_markup(TEST, |content| {
-		match content.member_type.as_str() {
-			"LinearLayout" => {
-				plygui::LinearLayout::new(plygui::layout::Orientation::Vertical)
-			},
-			"Button" => {
-				plygui::Button::new("uu")
-			},
-			_ => panic!("{} type is unsupported", content.member_type),
-		}
-	});
+	use plygui::{UiApplication};
+	
+	let mut application = plygui::Application::with_name("Plygui markup test");
+	
+	let mut window = application.new_window("plygui!!", plygui::WindowStartSize::Exact(640, 480), false);
+	plygui::register_markup_members(plygui_markup::registry_mut());
+	let res = parse_markup(TEST);
+	
+	window.set_child(Some(res));
+	application.start();
 }
