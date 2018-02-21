@@ -15,13 +15,13 @@ const TEST: &str = r#"
 				"id": "btn_click_it",
 				"type": "Button",
 				"label": "Click It",
-				"on_left_click": "click_da_buttn"
+				"on_click": "click_da_buttn"
 			},
 			{
 				"id": "btn_dont_click_it",
 				"type": "Button",
 				"label": "Don't Click It",
-				"on_left_click": "click_da_other_buttn"
+				"on_click": "click_da_other_buttn"
 			}
 		]
 	}"#;
