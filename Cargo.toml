@@ -8,4 +8,4 @@ name = "markuptest"
 path = "src/main.rs"
 
 [dependencies]
-plygui = {version = "0.0.1", path = "../plygui", features = ["markup"]}
+plygui-markup = {version = "0.0.1", path = "../plygui-markup"}
