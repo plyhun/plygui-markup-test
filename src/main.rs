@@ -51,7 +51,7 @@ fn main() {
 
     let mut application = plygui_markup::Application::with_name("Plygui markup test");
 
-    let mut window = application.new_window("plygui!!", plygui_markup::WindowStartSize::Exact(640, 480), false);
+    let mut window = application.new_window("plygui!!", plygui_markup::WindowStartSize::Exact(640, 480), plygui_markup::WindowMenu::None);
     let res = markup::parse_markup(TEST, &mut registry);
 
     window.set_child(Some(res));
