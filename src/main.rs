@@ -22,7 +22,7 @@ const TEST: &str = r#"
 				"type": "Button",
 				"label": "Don't Click It",
 				"on_click": "click_da_other_buttn"
-			}
+			},
 			{
 				"id": "the_frame",
 				"width": "MatchParent",
@@ -30,7 +30,10 @@ const TEST: &str = r#"
 				"type": "Frame",
 				"label": "Pam pam pam pam",
 				"child": {
-					
+					"id": "btn_never_click_it",
+					"type": "Button",
+					"label": "Never ever Click It",
+					"on_click": "click_da_3rd_buttn"
 				}
 			}
 		]
@@ -55,7 +58,10 @@ fn main() {
             }),
         )
         .unwrap();
-
+	registry
+        .push_callback("click_da_3rd_buttn", callbacks::Click::from(click_da_buttn))
+        .unwrap();
+    
     //https://github.com/rust-lang/rust/issues/29638
     //bind_markup_callback!(registry, click_da_buttn);
 
