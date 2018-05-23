@@ -1,6 +1,6 @@
 extern crate plygui_markup;
 
-use plygui_markup::{UiButton, UiApplication};
+use plygui_markup::*;
 use plygui_markup::markup::{self, MarkupRegistry};
 use plygui_markup::callbacks;
 
@@ -22,6 +22,16 @@ const TEST: &str = r#"
 				"type": "Button",
 				"label": "Don't Click It",
 				"on_click": "click_da_other_buttn"
+			}
+			{
+				"id": "the_frame",
+				"width": "MatchParent",
+				"height": "WrapContent",
+				"type": "Frame",
+				"label": "Pam pam pam pam",
+				"child": {
+					
+				}
 			}
 		]
 	}"#;
