@@ -39,7 +39,7 @@ const TEST: &str = r#"
 		]
 	}"#;
 
-fn click_da_buttn(button: &mut UiButton) {
+fn click_da_buttn(button: &mut Button) {
     println!("{} bein clickd", button.label());
 }
 
@@ -53,7 +53,7 @@ fn main() {
     registry
         .push_callback(
             "click_da_other_buttn",
-            callbacks::Click::from(|button: &mut UiButton| {
+            callbacks::Click::from(|button: &mut Button| {
                 println!("{} bein super clickd", button.label());
             }),
         )
@@ -65,7 +65,7 @@ fn main() {
     //https://github.com/rust-lang/rust/issues/29638
     //bind_markup_callback!(registry, click_da_buttn);
 
-    let mut application = plygui_markup::Application::with_name("Plygui markup test");
+    let mut application = plygui_markup::imp::Application::with_name("Plygui markup test");
 
     let mut window = application.new_window("plygui!!", plygui_markup::WindowStartSize::Exact(640, 480), plygui_markup::WindowMenu::None);
     let res = markup::parse_markup(TEST, &mut registry);
