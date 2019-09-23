@@ -39,8 +39,8 @@ const TEST: &str = r#"
 		]
 	}"#;
 
-fn click_da_buttn(button: &mut Button) {
-    println!("{} bein clickd", button.label());
+fn click_da_buttn(button: &mut dyn Clickable) {
+    println!("{} bein clickd", button.as_any().downcast_ref::<imp::Button>().unwrap().label());
 }
 
 fn main() {
@@ -48,26 +48,26 @@ fn main() {
     plygui_markup::register_markup_members(&mut registry);
 
     registry
-        .push_callback("click_da_buttn", callbacks::Click::from(click_da_buttn))
+        .push_callback("click_da_buttn", callbacks::OnClick::from(click_da_buttn))
         .unwrap();
     registry
         .push_callback(
             "click_da_other_buttn",
-            callbacks::Click::from(|button: &mut Button| {
-                println!("{} bein super clickd", button.label());
+            callbacks::OnClick::from(|button: &mut dyn Clickable| {
+                println!("{} bein super clickd", button.as_any().downcast_ref::<imp::Button>().unwrap().label());
             }),
         )
         .unwrap();
 	registry
-        .push_callback("click_da_3rd_buttn", callbacks::Click::from(click_da_buttn))
+        .push_callback("click_da_3rd_buttn", callbacks::OnClick::from(click_da_buttn))
         .unwrap();
     
     //https://github.com/rust-lang/rust/issues/29638
     //bind_markup_callback!(registry, click_da_buttn);
 
-    let mut application = plygui_markup::imp::Application::with_name("Plygui markup test");
+    let mut application = plygui_markup::imp::Application::get().unwrap();
 
-    let mut window = application.new_window("plygui!!", plygui_markup::WindowStartSize::Exact(640, 480), plygui_markup::WindowMenu::None);
+    let mut window = application.new_window("plygui!!", plygui_markup::WindowStartSize::Exact(640, 480), None);
     let res = markup::parse_markup(TEST, &mut registry);
 
     window.set_child(Some(res));
