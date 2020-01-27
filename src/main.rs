@@ -11,7 +11,13 @@ const TEST: &str = r#"
 		"width": "MatchParent",
 		"height": "WrapContent",
 		"orientation": "Vertical",
-		"children": [{
+		"children": [
+    		{
+				"id": "da_text",
+				"type": "Text",
+				"label": "Zis is text):"
+			},
+    		{
 				"id": "btn_click_it",
 				"type": "Button",
 				"label": "Click It",
